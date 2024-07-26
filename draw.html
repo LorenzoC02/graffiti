@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disegna</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <style>
+        /* Prevent zooming by setting user-scalable to no */
+        html {
+            touch-action: manipulation; /* For touch devices */
+        }
+
+        body {
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        /* Additional styles for the eraser button */
+        #eraser-button.active {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="brush-color">Color:</label>
+        <input type="color" id="brush-color" value="#0000ff">
+        
+        <label for="brush-width">Width:</label>
+        <input type="range" id="brush-width" value="5" min="1" max="50">
+        
+        <label for="brush-opacity">Opacity:</label>
+        <input type="range" id="brush-opacity" value="100" min="0" max="100">
+        
+        <button id="eraser-button">Eraser</button>
+        <button id="save-button">Save</button>
+    </div>
+    <div id="canvas-container">
+        <canvas id="drawing-canvas"></canvas>
+    </div>
+    <script src="draw.js"></script>
+</body>
+</html>

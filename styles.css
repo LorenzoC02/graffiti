@@ -1,0 +1,134 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: auto;
+}
+
+#image-grid {
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px;
+}
+
+.folder-section {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.folder-section h1 {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: #333;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-container img {
+  max-width: 200px;
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#controls label {
+  margin-right: 10px;
+}
+
+#controls input[type="color"],
+#controls input[type="number"],
+#controls input[type="range"] {
+  margin-right: 20px;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 40px); /* Subtract the height of the controls */
+}
+
+canvas {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.button-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+.button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#open-gallery-button a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
