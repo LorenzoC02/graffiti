@@ -1,25 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="index.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .button {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .button span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="button-container" id="import-image-button">
-            <img src="path_to_import_image.jpg" alt="Import Image" class="button-image">
-            <div class="button-text">Import Image</div>
-            <input type="file" id="image-input" accept="image/*" style="display:none;">
-        </div>
-        <div class="button-container" id="open-gallery-button">
-            <a href="home.html">
-                <img src="path_to_gallery_image.jpg" alt="Open Gallery" class="button-image">
-                <div class="button-text">Open Gallery</div>
-            </a>
-        </div>
+  <div class="button-container">
+    <div class="button" id="import-image-button">
+      <img src="import-image.jpg" alt="Import Image">
+      <span>Import Image</span>
     </div>
+    <div class="button">
+      <a href="home.html">
+        <img src="view-gallery.jpg" alt="View Gallery">
+        <span>View Gallery</span>
+      </a>
+    </div>
+    <input type="file" id="fileInput">
+  </div>
+
+  <script>
+    document.getElementById('import-image-button').addEventListener('click', () => {
+      document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imgData = e.target.result;
+          localStorage.setItem('uploadedImage', imgData);
+          localStorage.setItem('useUploadedImage', 'true');
+          window.location.href = 'draw.html';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 </html>
