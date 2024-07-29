@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const useUploadedImage = localStorage.getItem('useUploadedImage') === 'true';
     let isEraserMode = false;
 
-    function resizeCanvasAndImage(img, callback) {
-        console.log("aggiornato");
+    function resizeCanvasAndImage(img) {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         const maxWidth = viewportWidth * 0.8;
@@ -39,50 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
         // Prevent the canvas from resizing when zoomed
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
-
-        // Call the callback function if provided
-        if (callback) {
-            callback();
-        }
-    }
-
-    function loadImage(url, callback) {
-        fabric.Image.fromURL(url, (img) => {
-            callback(img);
-        }, {
-            crossOrigin: 'anonymous' // Ensure CORS is handled correctly for images from different origins
-        });
-    }
-
-    function addMaskImage() {
-        if (imageUrl) {
-            const maskUrl = imageUrl.replace(/(\.[\w\d_-]+)$/i, '_mask$1');
-            loadImage(maskUrl, (maskImg) => {
-                maskImg.set({
-                    selectable: false,
-                    evented: false,
-                    hasControls: false,
-                    hasBorders: false
-                });
-                canvas.add(maskImg);
-                maskImg.moveTo(1); // Move mask to be on top of the background
-                canvas.renderAll();
-            });
-        }
     }
 
     if (useUploadedImage) {
         const uploadedImage = localStorage.getItem('uploadedImage');
         if (uploadedImage) {
-            loadImage(uploadedImage, (img) => {
-                resizeCanvasAndImage(img, addMaskImage);
+            fabric.Image.fromURL(uploadedImage, (img) => {
+                resizeCanvasAndImage(img);
             });
         }
         // Reset the flag
         localStorage.removeItem('useUploadedImage');
     } else if (imageUrl) {
-        loadImage(imageUrl, (img) => {
-            resizeCanvasAndImage(img, addMaskImage);
+        fabric.Image.fromURL(imageUrl, (img) => {
+            resizeCanvasAndImage(img);
+        }, {
+            crossOrigin: 'anonymous' // Ensure CORS is handled correctly for images from different origins
         });
     }
 
